@@ -19,7 +19,12 @@ Ext.define('cnblogs.view.blogsinfo', {
                var aRecord= this.getRecord();
                 var patrn = /http.+\/(\d+)\.html/;
                 var result= patrn.exec(aRecord.data.link);
-                var ss = result;
+                if(result==null)
+                {
+                    alert('该文章为知识库文章，暂时不支持浏览');
+                }
+                else
+                {
                 if(result.length==2)
                 {
                     console.log('blogsinfo painted'+result[1]);
@@ -28,6 +33,7 @@ Ext.define('cnblogs.view.blogsinfo', {
                 else
                 {
                     return;
+                }
                 }
 
 

@@ -24,7 +24,24 @@ Ext.define('cnblogs.view.Main', {
         var foot={
             docked: 'bottom',
             xtype: 'titlebar',
-            title: 'foot'
+            title: 'foot',
+            items:[
+                {
+                    xtype:'button',
+                    text:'新闻',
+                    handler:
+                        function(){
+                            //history.back();
+                            // alert('- -');
+                            if(Ext.Viewport.newslist==undefined)
+                            {
+                                Ext.Viewport.newslist=Ext.create('cnblogs.view.newslist');
+                            }
+                            Ext.Viewport.setActiveItem(Ext.Viewport.newslist);
+                        }
+
+                }
+            ]
         };
         var feedlist={
             xtype:'list',

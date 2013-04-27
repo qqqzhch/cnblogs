@@ -22,6 +22,7 @@ Ext.define('cnblogs.view.blogsinfo', {
                 if(result==null)
                 {
                     alert('该文章为知识库文章，暂时不支持浏览');
+                    return;
                 }
                 else
                 {
@@ -69,7 +70,7 @@ Ext.define('cnblogs.view.blogsinfo', {
     },
     initialize:function(){
         var objthis=this;
-    console.log('blogsinfo initialize');
+        console.log('blogsinfo initialize');
 
         var head={
             docked: 'top',
@@ -78,12 +79,12 @@ Ext.define('cnblogs.view.blogsinfo', {
         };
         var foot={
             docked: 'bottom',
-            xtype: 'titlebar',
-            title: 'foot',
+            xtype: 'toolbar',
+
             items:[
                 {
                     xtype:'button',
-                    text:'fanhui',
+                    text:'返回',
                     handler:
                         function(){
                             //history.back();
@@ -91,7 +92,48 @@ Ext.define('cnblogs.view.blogsinfo', {
                             Ext.Viewport.setActiveItem('main');
                         }
 
+                },
+                {
+                    xtype: 'spacer'
+                },
+                {
+                    xtype: 'button',
+                    text : '查看博主文章',
+                    handler: function(){
+
+
+                        //
+                        var aRecord= objthis.getRecord();
+                        var re1 = '.*?'; // Non-greedy match on filler
+                        var re2 = '(?:[a-z][a-z]+)'; // Uninteresting: word
+                        var re3 = '.*?'; // Non-greedy match on filler
+                        var re4 = '(?:[a-z][a-z]+)'; // Uninteresting: word
+                        var re5 = '.*?'; // Non-greedy match on filler
+                        var re6 = '(?:[a-z][a-z]+)'; // Uninteresting: word
+                        var re7 = '.*?'; // Non-greedy match on filler
+                        var re8 = '(?:[a-z][a-z]+)'; // Uninteresting: word
+                        var re9 = '.*?'; // Non-greedy match on filler
+                        var re10 = '((?:[a-z][a-z]+))'; // Word 1
+
+                        var patrn = new RegExp(re1 + re2 + re3 + re4 + re5 + re6 + re7 + re8 + re9 + re10, ["i"]);
+                        var result= patrn.exec(aRecord.data.link);
+                        if(result!= null)
+                        {
+                            name=result[1].replace(/</, "&lt;");
+
+                            if(Ext.Viewport.userfeedlist==undefined)
+                            {
+                                Ext.Viewport.userfeedlist=Ext.create('cnblogs.view.userfeedlist');
+                            }
+                            Ext.Viewport.userfeedlist.setData(name);
+
+                            Ext.Viewport.setActiveItem(Ext.Viewport.userfeedlist);
+                        }
+                        //
+                    }
+
                 }
+
             ]
         };
 

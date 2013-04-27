@@ -53,7 +53,7 @@ Ext.define('cnblogs.view.newslist', {
         };
         var newslist={
             xtype:'list',
-            itemTpl:'<h1>{title}</h1>',
+            itemTpl:'<h1 style=" font-weight: bolder; font-size: large;">{title}</h1><p>{contentSnippet}</p>',
             store: Ext.create("cnblogs.store.newslist"),
             listeners:{
                 itemtap:function( obj, index, target, record, e, eOpts ){

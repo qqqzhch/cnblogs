@@ -45,7 +45,7 @@ Ext.define('cnblogs.view.Main', {
         };
         var feedlist={
             xtype:'list',
-            itemTpl:'<h1>{title}@{author}</h1>',
+            itemTpl:'<h2 style=" font-weight: bolder; font-size: large;">{title}@{author}</h2><p>{contentSnippet}</p>',
             store: Ext.create("cnblogs.store.feedlist"),
             listeners:{
               itemtap:function( obj, index, target, record, e, eOpts ){

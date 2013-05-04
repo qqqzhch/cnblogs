@@ -87,9 +87,9 @@ Ext.define('cnblogs.view.blogsinfo', {
                     text:'返回',
                     handler:
                         function(){
-                            //history.back();
+                           history.back();
                             // alert('- -');
-                            Ext.Viewport.setActiveItem('main');
+                           // Ext.Viewport.setActiveItem('main');
                         }
 
                 },
@@ -99,6 +99,9 @@ Ext.define('cnblogs.view.blogsinfo', {
                 {
                     xtype: 'button',
                     text : '查看博主文章',
+                    id:'seebloguser'
+                    /*
+                    ,
                     handler: function(){
 
 
@@ -131,6 +134,7 @@ Ext.define('cnblogs.view.blogsinfo', {
                         }
                         //
                     }
+                    */
 
                 }
 

@@ -81,9 +81,9 @@ Ext.define('cnblogs.view.newsinfo', {
                     text:'fanhui',
                     handler:
                         function(){
-                            //history.back();
+                            history.back();
                             // alert('- -');
-                            Ext.Viewport.setActiveItem('newslist');
+                           // Ext.Viewport.setActiveItem('newslist');
                         }
 
                 }

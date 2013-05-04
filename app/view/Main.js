@@ -2,6 +2,7 @@ Ext.define('cnblogs.view.Main', {
     extend: 'Ext.Panel',
     xtype: 'main',
 
+
     requires: [
         'Ext.TitleBar',
         'cnblogs.store.feedlist',
@@ -29,16 +30,23 @@ Ext.define('cnblogs.view.Main', {
                 {
                     xtype:'button',
                     text:'新闻',
+                    id:'newsbutton'
+                    /*
+                    ,
                     handler:
                         function(){
                             //history.back();
                             // alert('- -');
+                            Ext.app.Application.redirectTo("newspage");
+                            return;
                             if(Ext.Viewport.newslist==undefined)
                             {
                                 Ext.Viewport.newslist=Ext.create('cnblogs.view.newslist');
                             }
+
                             Ext.Viewport.setActiveItem(Ext.Viewport.newslist);
                         }
+*/
 
                 }
             ]
@@ -47,6 +55,8 @@ Ext.define('cnblogs.view.Main', {
             xtype:'list',
             itemTpl:'<h2 style=" font-weight: bolder; font-size: large;">{title}@{author}</h2><p>{contentSnippet}</p>',
             store: Ext.create("cnblogs.store.feedlist"),
+            id:'feedlist',
+            /*
             listeners:{
               itemtap:function( obj, index, target, record, e, eOpts ){
                   console.log('feedlist itemtap');
@@ -65,6 +75,7 @@ Ext.define('cnblogs.view.Main', {
 
               }
             },
+            */
             plugins: [
                 {
                     xclass: 'Ext.plugin.ListPaging',

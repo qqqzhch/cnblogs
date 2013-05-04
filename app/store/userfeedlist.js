@@ -11,6 +11,8 @@ Ext.define('cnblogs.store.userfeedlist', {
 
     config: {
         autoLoad: false,
+
+        storeId:'userfeedlist',
         fields: [
             { name: 'id', type: 'int' },
             { name: 'title', type: 'string' },

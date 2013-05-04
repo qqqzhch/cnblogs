@@ -11,10 +11,9 @@ Ext.define('cnblogs.store.feedlist', {
 
     modal:'cnblogs.model.feedlist',
 
-
-
     config: {
         autoLoad: true,
+        storeId:'feedlist',
         fields: [
             { name: 'id', type: 'int' },
             { name: 'title', type: 'string' },

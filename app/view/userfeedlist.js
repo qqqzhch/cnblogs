@@ -12,6 +12,7 @@ Ext.define('cnblogs.view.userfeedlist', {
     ],
     config: {
         layout:'fit',
+        masked:false,
 
         listeners:{
             painted:function(obj, eOpts){
@@ -23,6 +24,7 @@ Ext.define('cnblogs.view.userfeedlist', {
                 Ext.data.userfeedlist._proxy._url2='https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=15&q=http://wcf.open.cnblogs.com/blog/u/'+aRecord+'/posts/'
 
                 Ext.data.userfeedlist.load();
+
 
             }
         }
@@ -42,16 +44,12 @@ Ext.define('cnblogs.view.userfeedlist', {
             items:[
                 {
                     xtype:'button',
-                    text:'首页',
+                    text:'返回',
                     handler:
                         function(){
-                            //history.back();
+                            history.back();
                             // alert('- -');
-                            if(Ext.Viewport.main==undefined)
-                            {
-                                Ext.Viewport.newslist=Ext.create('cnblogs.view.main');
-                            }
-                            Ext.Viewport.setActiveItem(Ext.Viewport.main);
+
                         }
 
                 }
@@ -62,6 +60,9 @@ Ext.define('cnblogs.view.userfeedlist', {
             xtype:'list',
             itemTpl:'<h2 style=" font-weight: bolder; font-size: large;">{title}@{author}</h2><p>{contentSnippet}</p>',
             store: Ext.data.userfeedlist,
+            id:'userfeedlist'
+            /*
+            ,
             listeners:{
                 itemtap:function( obj, index, target, record, e, eOpts ){
                     console.log('feedlist itemtap');
@@ -80,6 +81,7 @@ Ext.define('cnblogs.view.userfeedlist', {
 
                 }
             }
+            */
 
 
           }

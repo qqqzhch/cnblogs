@@ -12,6 +12,7 @@ Ext.define('cnblogs.store.newslist', {
 
     config: {
         autoLoad: true,
+        storeId:'newsliststore',
         fields: [
             { name: 'id', type: 'int' },
             { name: 'title', type: 'string' },

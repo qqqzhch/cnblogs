@@ -42,10 +42,10 @@ Ext.define('cnblogs.view.newslist', {
                     text:'返回',
                     handler:
                         function(){
-                            //history.back();
+                            history.back();
                             // alert('- -');
 
-                            Ext.Viewport.setActiveItem('main');
+                           // Ext.Viewport.setActiveItem('main');
                         }
 
                 }
@@ -55,6 +55,8 @@ Ext.define('cnblogs.view.newslist', {
             xtype:'list',
             itemTpl:'<h1 style=" font-weight: bolder; font-size: large;">{title}</h1><p>{contentSnippet}</p>',
             store: Ext.create("cnblogs.store.newslist"),
+            id:'newslist',
+            /*
             listeners:{
                 itemtap:function( obj, index, target, record, e, eOpts ){
                     console.log('feedlist itemtap');
@@ -73,6 +75,7 @@ Ext.define('cnblogs.view.newslist', {
 
                 }
             },
+            */
             plugins: [
                 {
                     xclass: 'Ext.plugin.ListPaging',

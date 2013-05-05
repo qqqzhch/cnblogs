@@ -35,7 +35,7 @@ Ext.define('cnblogs.view.newslist', {
         var foot={
             docked: 'bottom',
             xtype: 'titlebar',
-            title: 'foot',
+
             items:[
                 {
                     xtype:'button',

@@ -15,7 +15,9 @@ Ext.define('cnblogs.controller.main', {
             'blogsinfo/:id': 'blogsinfo',
             'newsinfo/:id':'newsinfopage',
             'userfeedlistpage/:name':'userfeedlistpage',
-            'blogsinfo/:id/:name': 'blogsinfo'
+            'blogsinfo/:id/:name': 'blogsinfo',
+            'classpage': 'classpage',
+            'feedbyclass/:id':'feedbyclass'
 
 
         },
@@ -24,7 +26,11 @@ Ext.define('cnblogs.controller.main', {
         feedlist:"#feedlist",
         newslist:'#newslist',
         seebloguser:'#seebloguser',
-        userfeedlisttab:'#userfeedlist'
+        userfeedlisttab:'#userfeedlist',
+        classbutton:'#classbutton',
+        blogclasslist:'#blogclasslist',
+        feedlist:'#feedlistbyclass'
+
 
         },
         control: {
@@ -43,6 +49,12 @@ Ext.define('cnblogs.controller.main', {
             },
             userfeedlisttab:{
                 itemtap: 'userfeedlisttabon'//,
+            },
+            classbutton:{
+                tap: 'classbuttontap'//,
+            },
+            blogclasslist:{
+                itemtap:'blogclassitemtab'
             }
 
 
@@ -74,6 +86,24 @@ Ext.define('cnblogs.controller.main', {
         this.redirectTo('blogsinfo/'+index+"/user");
 
     },
+    blogclassitemtab:function(obj, index, target, record, e, eOpts){
+        console.log('blogclassitemtab itemtap');
+        this.redirectTo('feedbyclass/'+index);
+    },
+    feedbyclass:function(id){
+        console.log('feedbyclass');
+
+        record= Ext.getStore('blogclass').getAt(id)
+        if(Ext.Viewport.feedlistbyclass==undefined )
+        {
+            Ext.Viewport.feedlistbyclass=Ext.create('cnblogs.view.feedlistbyclass');
+        }
+
+        Ext.Viewport.feedlistbyclass.setRecord(record);
+
+        Ext.Viewport.setActiveItem('feedlistbyclass');
+
+    },
     blogsinfo:function(id,obj){
 
         if(obj==undefined)
@@ -94,6 +124,18 @@ Ext.define('cnblogs.controller.main', {
         Ext.Viewport.blogsinfo.setRecord(record);
 
         Ext.Viewport.setActiveItem('blogsinfo');
+    },
+    classbuttontap:function(){
+
+        this.redirectTo('classpage');
+    },
+    classpage:function(){
+        if(Ext.Viewport.blogclass==undefined )
+        {
+            Ext.Viewport.blogclass= Ext.create('cnblogs.view.blogclass');
+            Ext.Viewport.add(Ext.Viewport.blogclass);
+        }
+        Ext.Viewport.setActiveItem('blogclass');
     },
     newsinfopage:function(id){
         console.log('newsinfopage');

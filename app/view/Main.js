@@ -24,8 +24,8 @@ Ext.define('cnblogs.view.Main', {
         };
         var foot={
             docked: 'bottom',
-            xtype: 'titlebar',
-            title: 'foot',
+            xtype: 'toolbar',
+            title: '代码改变世界',
             items:[
                 {
                     xtype:'button',
@@ -48,6 +48,14 @@ Ext.define('cnblogs.view.Main', {
                         }
 */
 
+                },
+                {
+                    xtype: 'spacer'
+                },
+                {
+                    xtype:'button',
+                    text:'分类阅读',
+                    id:'classbutton'
                 }
             ]
         };

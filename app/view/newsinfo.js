@@ -74,11 +74,11 @@ Ext.define('cnblogs.view.newsinfo', {
         var foot={
             docked: 'bottom',
             xtype: 'titlebar',
-            title: 'foot',
+
             items:[
                 {
                     xtype:'button',
-                    text:'fanhui',
+                    text:'返回',
                     handler:
                         function(){
                             history.back();

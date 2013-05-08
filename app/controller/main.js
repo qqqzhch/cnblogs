@@ -29,7 +29,7 @@ Ext.define('cnblogs.controller.main', {
         userfeedlisttab:'#userfeedlist',
         classbutton:'#classbutton',
         blogclasslist:'#blogclasslist',
-        feedlist:'#feedlistbyclass'
+        feedlist2:'#feedlistbyclass'
 
 
         },
@@ -38,23 +38,31 @@ Ext.define('cnblogs.controller.main', {
                 tap: 'newsbutntap'
             },
             feedlist:{
-                itemtap:'feedtab'
+                itemtap:'feedtab',
+                itemswipe:'feedlistitemswipe'
+            },
+            feedlist2:{
+                itemtap:'feedtab',
+                itemswipe:'userfeedlistwipe'
             },
             newslist:{
-                itemtap:'newstab'
+                itemtap:'newstab',
+                itemswipe:'newslistwipe'
             },
             seebloguser:{
                 tap: 'seeblogusertap'//,
                // scope:this
             },
             userfeedlisttab:{
-                itemtap: 'userfeedlisttabon'//,
+                itemtap: 'userfeedlisttabon',
+                itemswipe:'userfeedlistwipe'
             },
             classbutton:{
                 tap: 'classbuttontap'//,
             },
             blogclasslist:{
-                itemtap:'blogclassitemtab'
+                itemtap:'blogclassitemtab',
+                itemswipe:'blogclasslistwipe'
             }
 
 
@@ -76,6 +84,38 @@ Ext.define('cnblogs.controller.main', {
     feedtab:function(obj, index, target, record, e, eOpts ){
         console.log('feedlist itemtap');
         this.redirectTo('blogsinfo/'+index);
+    },
+    feedlistitemswipe:function(obj, index, target, record, e, eOpts){
+        console.log('feedlistitemswipe');
+        if(e.direction=="right")
+        {
+            this.redirectTo('classpage');
+        }
+        else
+        if(e.direction=="left")
+        {
+            this.redirectTo('newspage');
+        }
+
+    },
+    blogclasslistwipe:function(obj, index, target, record, e, eOpts){
+        if(e.direction=="left")
+        {
+            this.redirectTo('');
+        }
+
+    },
+    newslistwipe:function(obj, index, target, record, e, eOpts){
+        if(e.direction=="right")
+        {
+            this.redirectTo('');
+        }
+    },
+    userfeedlistwipe:function(obj, index, target, record, e, eOpts){
+        if(e.direction=="right")
+        {
+            history.back();
+        }
     },
     newstab:function(obj, index, target, record, e, eOpts ){
         console.log('newslist itemtap');
@@ -158,27 +198,25 @@ Ext.define('cnblogs.controller.main', {
         Ext.Viewport.setActiveItem(Ext.Viewport.userfeedlist);
     },
     seeblogusertap:function(){
+        console.log('seeblogusertap');
         var aRecord= Ext.Viewport.blogsinfo.getRecord();
-        var re1 = '.*?'; // Non-greedy match on filler
-        var re2 = '(?:[a-z][a-z]+)'; // Uninteresting: word
-        var re3 = '.*?'; // Non-greedy match on filler
-        var re4 = '(?:[a-z][a-z]+)'; // Uninteresting: word
-        var re5 = '.*?'; // Non-greedy match on filler
-        var re6 = '(?:[a-z][a-z]+)'; // Uninteresting: word
-        var re7 = '.*?'; // Non-greedy match on filler
-        var re8 = '(?:[a-z][a-z]+)'; // Uninteresting: word
-        var re9 = '.*?'; // Non-greedy match on filler
-        var re10 = '((?:[a-z][a-z]+))'; // Word 1
 
-        var patrn = new RegExp(re1 + re2 + re3 + re4 + re5 + re6 + re7 + re8 + re9 + re10, ["i"]);
-        var result= patrn.exec(aRecord.data.link);
+
+        //var patrn =  new RegExp(re1+re2+re3+re4+re5+re6+re7+re8+re9+re10,["i"]);
+        var patrn =  /\.com\/([^\/]+?)\//;
+       // var result= patrn.exec(aRecord.data.link);
+        var result= aRecord.data.link.match(patrn);
         if(result!= null)
         {
-            name=result[1].replace(/</, "&lt;");
-
-
+           // alert(result[1]);
+            //name=result[1].replace(/</, "&lt;");
+            name=result[1]
             this.redirectTo('userfeedlistpage/'+name);
 
+        }
+        else
+        {
+            alert('异常url'+aRecord.data.link);
         }
 
         //alert('- -');

@@ -12,7 +12,7 @@ Ext.define('cnblogs.view.userfeedlist', {
     ],
     config: {
         layout:'fit',
-        masked:false,
+
 
         listeners:{
             painted:function(obj, eOpts){
@@ -61,6 +61,8 @@ Ext.define('cnblogs.view.userfeedlist', {
             itemTpl:'<h2 style=" font-weight: bolder; font-size: large;">{title}@{author}</h2><p>{contentSnippet}</p>',
             store: Ext.data.userfeedlist,
             id:'userfeedlist'
+
+
             /*
             ,
             listeners:{

@@ -38,7 +38,20 @@ Ext.define('cnblogs.view.feedlistbyclass', {
             docked: 'top',
             xtype: 'titlebar',
             title: '博客园-分类阅读',
-            id:'readbycladsstitle'
+            id:'readbycladsstitle',
+            items:[
+                {
+                    xtype:'button',
+                    text:'返回',
+                    handler:
+                        function(){
+                            history.back();
+                            // alert('- -');
+
+                        }
+
+                }
+            ]
         };
         var foot={
             docked: 'bottom',
@@ -67,7 +80,7 @@ Ext.define('cnblogs.view.feedlistbyclass', {
 
         }
 
-        this.add([head,feedlist,foot]);
+        this.add([head,feedlist]);
 
 
 

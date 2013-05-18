@@ -45,7 +45,31 @@ Ext.define('cnblogs.view.newsinfo', {
                         aRecord.data.text=result.Content;
 
                         myblog.setData(aRecord.data);
-                        //alert('- -');
+                        console.log('success news')
+
+
+                        Ext.Array.each(Ext.select("#newsdiv img").elements, function(name, index, countriesItSelf) {
+                            name.onclick=function(){
+                                //alert(this.src);
+                                if(Ext.Viewport.imgview==undefined)
+                                {
+                                    Ext.Viewport.imgview=Ext.create('cnblogs.view.imgview');
+                                    Ext.Viewport.add(Ext.Viewport.imgview);
+                                    Ext.Viewport.imgview.setWidth(parseInt(Ext.getBody().getWidth()));
+                                    Ext.Viewport.imgview.setHeight(parseInt(Ext.getBody().getHeight()));
+                                  //  Ext.Viewport.imgview.setCentered(true);
+                                }
+                                //Ext.Viewport.setActiveItem(Ext.Viewport.imgview);
+                                Ext.Viewport.imgview.setData(this.src);
+                                Ext.Viewport.imgview.show();
+
+                            };
+                        });
+
+
+
+
+
 
 
 
@@ -69,7 +93,20 @@ Ext.define('cnblogs.view.newsinfo', {
         var head={
             docked: 'top',
             xtype: 'titlebar',
-            title: '新闻'
+            title: '新闻',
+            items:[
+                {
+                    xtype:'button',
+                    text:'返回',
+                    handler:
+                        function(){
+                            history.back();
+                            // alert('- -');
+                            // Ext.Viewport.setActiveItem('newslist');
+                        }
+
+                }
+            ]
         };
         var foot={
             docked: 'bottom',
@@ -94,14 +131,14 @@ Ext.define('cnblogs.view.newsinfo', {
             xtype:'panel',
             fullscreen:true,
             html:'blog',
-            tpl:'<h1>{title}</h1><br><br>{text}',
+            tpl:'<div style="padding: 20px;" id="newsdiv"><h1>{title}</h1><br><br>{text}</div>',
             id:'myblog',
             scrollable:'both'
         }
 
 
 
-        this.add([head,blog,foot]);
+        this.add([head,blog]);
 
 
 

@@ -19,8 +19,40 @@ Ext.define('cnblogs.view.Main', {
 
         var head={
             docked: 'top',
-            xtype: 'titlebar',
-            title: '博客园-首页'
+            xtype: 'toolbar',
+            title: '博客园-首页',
+            items:[
+                {
+                    xtype:'button',
+                    text:'新闻',
+                    id:'newsbutton'
+                    /*
+                     ,
+                     handler:
+                     function(){
+                     //history.back();
+                     // alert('- -');
+                     Ext.app.Application.redirectTo("newspage");
+                     return;
+                     if(Ext.Viewport.newslist==undefined)
+                     {
+                     Ext.Viewport.newslist=Ext.create('cnblogs.view.newslist');
+                     }
+
+                     Ext.Viewport.setActiveItem(Ext.Viewport.newslist);
+                     }
+                     */
+
+                },
+                {
+                    xtype: 'spacer'
+                },
+                {
+                    xtype:'button',
+                    text:'分类阅读',
+                    id:'classbutton'
+                }
+            ]
         };
         var foot={
             docked: 'bottom',
@@ -61,7 +93,7 @@ Ext.define('cnblogs.view.Main', {
         };
         var feedlist={
             xtype:'list',
-            itemTpl:'<h2 style=" font-weight: bolder; font-size: large;">{title}@{author}</h2><p>{contentSnippet}</p>',
+            itemTpl:'<div class="tweet"><span class="posted">@{author}</span><h2>{title}</h2><p>{contentSnippet}</p></div>',
             store: Ext.create("cnblogs.store.feedlist"),
             id:'feedlist',
             /*
@@ -93,7 +125,7 @@ Ext.define('cnblogs.view.Main', {
 
           }
 
-        this.add([head,feedlist,foot]);
+        this.add([head,feedlist]);
 
 
 

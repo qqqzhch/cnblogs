@@ -30,7 +30,21 @@ Ext.define('cnblogs.view.newslist', {
         var head={
             docked: 'top',
             xtype: 'titlebar',
-            title: '博客园-新闻'
+            title: '博客园-新闻',
+            items:[
+                {
+                    xtype:'button',
+                    text:'返回',
+                    handler:
+                        function(){
+                            history.back();
+                            // alert('- -');
+
+                            // Ext.Viewport.setActiveItem('main');
+                        }
+
+                }
+            ]
         };
         var foot={
             docked: 'bottom',
@@ -53,7 +67,7 @@ Ext.define('cnblogs.view.newslist', {
         };
         var newslist={
             xtype:'list',
-            itemTpl:'<h1 style=" font-weight: bolder; font-size: large;">{title}</h1><p>{contentSnippet}</p>',
+            itemTpl:'<div class="tweet"><h2>{title}</h2><p>{contentSnippet}</p></div>',
             store: Ext.create("cnblogs.store.newslist"),
             id:'newslist',
             /*
@@ -85,7 +99,7 @@ Ext.define('cnblogs.view.newslist', {
 
         }
 
-        this.add([head,newslist,foot]);
+        this.add([head,newslist]);
 
     }
 

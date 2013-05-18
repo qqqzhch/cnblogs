@@ -43,8 +43,12 @@ Ext.define('cnblogs.store.userfeedlist', {
     nextPage:function(options ){
         //重写原来的方法
     //alert('- -');
-       console.log('- -');
-        this._proxy._url=this._proxy._url2+(this.currentPage + 1)+'/10/'
+        if(this.currentPage2==null)
+        {
+            this.currentPage2=1;
+        }
+        this.currentPage2=this.currentPage2+1;
+        this._proxy._url=this._proxy._url2+this.currentPage2+'/10/'
 
         this.loadPage(1, options);
     }

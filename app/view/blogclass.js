@@ -21,7 +21,7 @@ Ext.define('cnblogs.view.blogclass', {
      var list={
          xtype:'list',
          store:Ext.create('cnblogs.store.blogclass'),
-         itemTpl:'<h1>{far}->{Name}</h1>',
+         itemTpl:'<div class="tweet"><span class="posted">@{far}</span><h2>{Name}</h2></div>',
          id:'blogclasslist'
      }
         var head={

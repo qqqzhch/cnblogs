@@ -8,11 +8,13 @@
 Ext.define('cnblogs.view.blogsinfo', {
     extend: 'Ext.Panel',
     xtype: 'blogsinfo',
+
     requires: [
       'cnblogs.store.blogsinfo'
     ],
     config: {
         layout:'fit',
+
         listeners:{
             painted:function(obj, eOpts){
                 console.log('blogsinfo painted');
@@ -51,7 +53,27 @@ Ext.define('cnblogs.view.blogsinfo', {
                     success: function(result) {
                         aRecord.data.text=result.text;
                         myblog.setData(aRecord.data);
-                        //alert('- -');
+                        ///
+                        Ext.Array.each(Ext.select("#blogdiv img").elements, function(name, index, countriesItSelf) {
+                            name.onclick=function(){
+                                //alert(this.src);
+                                if(Ext.Viewport.imgview==undefined)
+                                {
+                                    Ext.Viewport.imgview=Ext.create('cnblogs.view.imgview');
+                                    Ext.Viewport.add(Ext.Viewport.imgview);
+                                    Ext.Viewport.imgview.setWidth(parseInt(Ext.getBody().getWidth()));
+                                    Ext.Viewport.imgview.setHeight(parseInt(Ext.getBody().getHeight()));
+                                    //  Ext.Viewport.imgview.setCentered(true);
+                                }
+
+
+                                Ext.Viewport.imgview.setData(this.src);
+                                Ext.Viewport.imgview.show();
+
+                            };
+                        });
+                        ///
+
 
 
 
@@ -74,8 +96,66 @@ Ext.define('cnblogs.view.blogsinfo', {
 
         var head={
             docked: 'top',
-            xtype: 'titlebar',
-            title: '博客详情'
+            xtype: 'toolbar',
+            title: '博客详情',
+            items:[
+                {
+                    xtype:'button',
+                    text:'返回',
+                    handler:
+                        function(){
+                            history.back();
+                            // alert('- -');
+                            // Ext.Viewport.setActiveItem('main');
+                        }
+
+                },
+                {
+                    xtype: 'spacer'
+                },
+                {
+                    xtype: 'button',
+                    text : '查看博主文章',
+                    id:'seebloguser'
+                    /*
+                     ,
+                     handler: function(){
+
+
+                     //
+                     var aRecord= objthis.getRecord();
+                     var re1 = '.*?'; // Non-greedy match on filler
+                     var re2 = '(?:[a-z][a-z]+)'; // Uninteresting: word
+                     var re3 = '.*?'; // Non-greedy match on filler
+                     var re4 = '(?:[a-z][a-z]+)'; // Uninteresting: word
+                     var re5 = '.*?'; // Non-greedy match on filler
+                     var re6 = '(?:[a-z][a-z]+)'; // Uninteresting: word
+                     var re7 = '.*?'; // Non-greedy match on filler
+                     var re8 = '(?:[a-z][a-z]+)'; // Uninteresting: word
+                     var re9 = '.*?'; // Non-greedy match on filler
+                     var re10 = '((?:[a-z][a-z]+))'; // Word 1
+
+                     var patrn = new RegExp(re1 + re2 + re3 + re4 + re5 + re6 + re7 + re8 + re9 + re10, ["i"]);
+                     var result= patrn.exec(aRecord.data.link);
+                     if(result!= null)
+                     {
+                     name=result[1].replace(/</, "&lt;");
+
+                     if(Ext.Viewport.userfeedlist==undefined)
+                     {
+                     Ext.Viewport.userfeedlist=Ext.create('cnblogs.view.userfeedlist');
+                     }
+                     Ext.Viewport.userfeedlist.setData(name);
+
+                     Ext.Viewport.setActiveItem(Ext.Viewport.userfeedlist);
+                     }
+                     //
+                     }
+                     */
+
+                }
+
+            ]
         };
         var foot={
             docked: 'bottom',
@@ -145,14 +225,14 @@ Ext.define('cnblogs.view.blogsinfo', {
             xtype:'panel',
             fullscreen:true,
             html:'blog',
-            tpl:'<h1>{title}</h1><br><h2>@{author}</h2><br>{text}',
+            tpl:'<div style="padding: 20px;" id="blogdiv"><h1>{title}</h1><br><h2>@{author}</h2><br>{text}</div>',
             id:'myblog',
             scrollable:'both'
         }
 
 
 
-        this.add([head,blog,foot]);
+        this.add([head,blog]);
         Ext.data.blogsinfo=  Ext.create("cnblogs.store.blogsinfo");
 
 

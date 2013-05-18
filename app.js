@@ -38,6 +38,9 @@ Ext.application({
     stores:[
         'cnblogs.store.feedlist'
     ],
+    controllers:[
+      'cnblogs.controller.main'
+    ],
 
     icon: {
         '57': 'resources/icons/Icon.png',

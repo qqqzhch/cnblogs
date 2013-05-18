@@ -8,3 +8,24 @@
 
 // Examples of using the icon mixin:
 // @include icon('user');
+h2 { font-weight: bold; padding-bottom: 3px; }
+img { border-radius: 5px; float: left; }
+.tweet {
+  color: #333;
+  min-height: 50px;
+}
+.posted { float: right; }
+
+html, body {
+  font-family:"arial","宋体" ,"Helvetica Neue", HelveticaNeue, "Helvetica-Neue", Helvetica, "BBAlpha Sans", sans-serif;
+
+}
+#newsdiv img{
+ width: 150px;
+ height: 150px;
+}
+
+#blogdiv  img{
+  width: 150px;
+  height: 150px;
+}

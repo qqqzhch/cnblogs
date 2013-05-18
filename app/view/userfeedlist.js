@@ -35,7 +35,20 @@ Ext.define('cnblogs.view.userfeedlist', {
         var head={
             docked: 'top',
             xtype: 'titlebar',
-            title: '博客园-博主主页'
+            title: '博客园-博主主页',
+            items:[
+                {
+                    xtype:'button',
+                    text:'返回',
+                    handler:
+                        function(){
+                            history.back();
+                            // alert('- -');
+
+                        }
+
+                }
+            ]
         };
         var foot={
             docked: 'bottom',
@@ -58,7 +71,7 @@ Ext.define('cnblogs.view.userfeedlist', {
         Ext.data.userfeedlist=  Ext.create("cnblogs.store.userfeedlist");
         var feedlist={
             xtype:'list',
-            itemTpl:'<h2 style=" font-weight: bolder; font-size: large;">{title}@{author}</h2><p>{contentSnippet}</p>',
+            itemTpl:'<div class="tweet"><span class="posted">@{author}</span><h2>{title}</h2><p>{contentSnippet}</p></div>',
             store: Ext.data.userfeedlist,
             id:'userfeedlist'
 
@@ -88,7 +101,7 @@ Ext.define('cnblogs.view.userfeedlist', {
 
           }
 
-        this.add([head,feedlist,foot]);
+        this.add([head,feedlist]);
 
 
 

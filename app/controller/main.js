@@ -22,6 +22,7 @@ Ext.define('cnblogs.controller.main', {
             'blogsinfo2/:id': 'blogsinfo2'
 
 
+
         },
         refs: {
         newsbutn:"#newsbutton",
@@ -32,6 +33,7 @@ Ext.define('cnblogs.controller.main', {
         classbutton:'#classbutton',
         blogclasslist:'#blogclasslist',
         feedlist2:'#feedlistbyclass'
+
 
 
 
@@ -71,6 +73,7 @@ Ext.define('cnblogs.controller.main', {
 
 
 
+
         }
     },
 
@@ -89,6 +92,7 @@ Ext.define('cnblogs.controller.main', {
         this.redirectTo('newspage');
 
     },
+
     feedtab:function(obj, index, target, record, e, eOpts ){
         console.log('feedlist itemtap');
         this.redirectTo('blogsinfo/'+index);
